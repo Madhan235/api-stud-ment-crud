@@ -16,6 +16,8 @@ const createStudent = async () => {
     qualification
 
 }
+
+
   const response = await fetch("https://645e1c5212e0a87ac0e7dbc6.mockapi.io/students",
   {
     method:"POST",
