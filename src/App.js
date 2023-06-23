@@ -1,4 +1,4 @@
-import { Switch } from 'react-router-dom/cjs/react-router-dom.min';
+import { Switch, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import './App.css';
 import Base from './Base/Base';
 import Students from './components/Students';
@@ -12,26 +12,29 @@ import Mentors from './components/Mentors';
 import AddMentors from './components/AddMentors';
 import mentData from "./Data/mentors";
 import UpdateMentor from './components/UpdateMentor';
+import Login from './components/Login';
+import Signup from './components/Signup';
 
 
 function App() {
   const [students, setStudents] = useState([]);
   const [teacher, setTeacher] = useState([]);
-
+const history = useHistory()
 
 useEffect(()=>{
 const getStudents = async()=>{
-  const response = await fetch("https://645e1c5212e0a87ac0e7dbc6.mockapi.io/students",{
+  const response = await fetch("https://node-3-copy.vercel.app/students/all",{
     method:"GET",
+    headers:{"auth-token": localStorage.getItem("token")}
   });
   const data = await response.json();
-  // console.log(data)
-  if(data){
-    setStudents(data)
-  }
+  setStudents(data.data)
 };
-getStudents()
-
+if(!localStorage.getItem("token")){
+  history.push("/login")
+} else{
+  getStudents()
+}
 const getMentors = async()=>{
 
   const response = await fetch("https://645e1c5212e0a87ac0e7dbc6.mockapi.io/menotrs",
@@ -56,7 +59,13 @@ getMentors();
   return (
     <div className="App">
          <Switch>
-          <Route exact path="/">
+          <Route exact path="/signup">
+           <Signup/>
+          </Route>
+          <Route path="/login">
+             <Login/>
+          </Route>
+          <Route path="/students">
             <Students
             students={students}
             setStudents={setStudents}

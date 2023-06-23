@@ -9,6 +9,14 @@ function Base({title, description, children}) {
   <div className='main-component base-component'>
     <div className='nav-button'>
       <button
+      onClick={()=>history.push("/signup")}
+      >Signup</button>
+      <button
+      onClick={()=>history.push("/login")}
+      
+      >Login</button>
+      
+      <button
       onClick={() =>history.push("/")}
       >Students-Dashboard</button>
       <button
