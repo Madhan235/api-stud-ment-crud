@@ -15,7 +15,7 @@ useEffect(()=>{
  setBatch(editStudent.batch);
  setGender(editStudent.gender);
  setQualification(editStudent.qualification);
-//  console.log(editStudent)
+ 
 },[id])
  
 const history = useHistory();
@@ -35,9 +35,9 @@ const history = useHistory();
          )
          students[id] = updatedObj
          setStudents([...students])
-         history.push("/");
+         history.push("/students");
      }
-     
+     const canClick = Boolean(name && batch && gender && qualification !== "");
   return (
 <Base 
 title={"Edit-Student Page"}
@@ -52,7 +52,7 @@ description={"We can edit a student information here"}
         type='text'
         placeholder='Enter Name'
         value={name}
-        onChange={(e)=>setName(e.target.value)}
+        onChange={(e)=>setName(e.target.value.trim())}
         /> 
 
 <br/>
@@ -60,7 +60,7 @@ description={"We can edit a student information here"}
         type='text'
         placeholder='Enter Batch'
         value={batch}
-        onChange={(e)=>setBatch(e.target.value)}
+        onChange={(e)=>setBatch(e.target.value.trim())}
 
         /> 
 
@@ -69,7 +69,7 @@ description={"We can edit a student information here"}
         type='text'
         placeholder='Enter Gender'
         value={gender}
-        onChange={(e)=>setGender(e.target.value)}
+        onChange={(e)=>setGender(e.target.value.trim())}
 
         />
 
@@ -78,11 +78,14 @@ description={"We can edit a student information here"}
         type='text'
         placeholder='Enter Qualification'
         value={qualification}
-        onChange={(e)=>setQualification(e.target.value)}
+        onChange={(e)=>setQualification(e.target.value.trim())}
 
         /> 
         <br/>
-<button onClick={updateStudent}>Update Students</button>
+<button onClick={updateStudent}
+disabled={!canClick}
+style={{cursor: canClick ? "pointer" : "not-allowed"}}
+>Update Students</button>
     
     </div>
 

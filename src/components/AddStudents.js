@@ -31,7 +31,7 @@ history.push("/");
 }
 
 
-
+const canClick = Boolean(name && batch && gender && qualification !== "");
   return (
     <Base
     title={"Add-Student Page"}
@@ -44,7 +44,7 @@ history.push("/");
         type='text'
         placeholder='Enter Name'
         value={name}
-        onChange={(e)=>setName(e.target.value)}
+        onChange={(e)=>setName(e.target.value.trim())}
         /> 
 
 <br/>
@@ -52,7 +52,7 @@ history.push("/");
         type='text'
         placeholder='Enter Batch'
         value={batch}
-        onChange={(e)=>setBatch(e.target.value)}
+        onChange={(e)=>setBatch(e.target.value.trim())}
 
         /> 
 
@@ -61,7 +61,7 @@ history.push("/");
         type='text'
         placeholder='Enter Gender'
         value={gender}
-        onChange={(e)=>setGender(e.target.value)}
+        onChange={(e)=>setGender(e.target.value.trim())}
 
         />
 
@@ -70,11 +70,14 @@ history.push("/");
         type='text'
         placeholder='Enter Qualification'
         value={qualification}
-        onChange={(e)=>setQualification(e.target.value)}
+        onChange={(e)=>setQualification(e.target.value.trim())}
 
         /> 
         <br/>
-<button onClick={createStudent}>Add Students</button>
+<button onClick={createStudent}
+disabled={!canClick}
+style={{cursor: canClick ? "pointer" : "not-allowed"}}
+>Add Students</button>
     
     </div>
     </Base>

@@ -41,6 +41,7 @@ headers:{"Content-Type":"application/json"}
                 setTeacher([...teacher])
                 history.push("/mentors");
             }
+            const canClick = Boolean(name && batch && gender && batch !== "");
   return (
     <Base
     title={"Edit-Mentor Page"}
@@ -52,7 +53,7 @@ headers:{"Content-Type":"application/json"}
 type='text'
 placeholder='Enter Name'
 value={name}
-onChange={(e)=>setName(e.target.value)}
+onChange={(e)=>setName(e.target.value.trim())}
 /> 
 
 <br/>
@@ -60,7 +61,7 @@ onChange={(e)=>setName(e.target.value)}
 type='text'
 placeholder='Enter Batch'
 value={batch}
-onChange={(e)=>setBatch(e.target.value)}
+onChange={(e)=>setBatch(e.target.value.trim())}
 
 /> 
 
@@ -69,7 +70,7 @@ onChange={(e)=>setBatch(e.target.value)}
 type='text'
 placeholder='Enter Gender'
 value={gender}
-onChange={(e)=>setGender(e.target.value)}
+onChange={(e)=>setGender(e.target.value.trim())}
 
 />
 
@@ -78,11 +79,14 @@ onChange={(e)=>setGender(e.target.value)}
 type='text'
 placeholder='Enter Subject'
 value={subject}
-onChange={(e)=>setSubject(e.target.value)}
+onChange={(e)=>setSubject(e.target.value.trim())}
 
 /> 
 <br/>
-<button onClick={updateMentor}>Update-Mentor</button>
+<button onClick={updateMentor}
+disabled={!canClick}
+style={{cursor: canClick ? "pointer" : "not-allowed"}}
+>Update-Mentor</button>
 
 </div>
     </Base>

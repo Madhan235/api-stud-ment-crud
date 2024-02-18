@@ -59,7 +59,7 @@ getMentors();
   return (
     <div className="App">
          <Switch>
-          <Route exact path="/signup">
+          <Route exact path="/">
            <Signup/>
           </Route>
           <Route path="/login">

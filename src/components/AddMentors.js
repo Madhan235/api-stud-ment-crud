@@ -24,8 +24,9 @@ headers:{"Content-Type": "application/json"},
 });
 setTeacher([...teacher,newMentor])
 history.push("/mentors")
-    }
 
+    }
+    const canClick = Boolean(name && batch && gender && batch !== "");
   return (
     <Base
     title={"Add-Mentor Page"}
@@ -37,7 +38,7 @@ history.push("/mentors")
 type='text'
 placeholder='Enter Name'
 value={name}
-onChange={(e)=>setName(e.target.value)}
+onChange={(e)=>setName(e.target.value.trim())}
 /> 
 
 <br/>
@@ -45,7 +46,7 @@ onChange={(e)=>setName(e.target.value)}
 type='text'
 placeholder='Enter Batch'
 value={batch}
-onChange={(e)=>setBatch(e.target.value)}
+onChange={(e)=>setBatch(e.target.value.trim())}
 
 /> 
 
@@ -54,7 +55,7 @@ onChange={(e)=>setBatch(e.target.value)}
 type='text'
 placeholder='Enter Gender'
 value={gender}
-onChange={(e)=>setGender(e.target.value)}
+onChange={(e)=>setGender(e.target.value.trim())}
 
 />
 
@@ -63,11 +64,14 @@ onChange={(e)=>setGender(e.target.value)}
 type='text'
 placeholder='Enter Subject'
 value={subject}
-onChange={(e)=>setSubject(e.target.value)}
+onChange={(e)=>setSubject(e.target.value.trim())}
 
 /> 
 <br/>
-<button onClick={createMentor}>Add Mentor</button>
+<button onClick={createMentor}
+disabled={!canClick}
+style={{cursor: canClick ? "pointer" : "not-allowed"}}
+>Add Mentor</button>
 
 </div>
     </Base>

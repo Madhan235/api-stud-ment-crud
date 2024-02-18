@@ -29,7 +29,12 @@ const data = await res.json();
 }
 } 
 
+const canClick = Boolean(email && password !== "")
 
+const timeOut = setTimeout(() => {
+    setErr("");
+  }, 2000);
+  
     return (
      <Base
      title={"Login-page"}
@@ -37,21 +42,24 @@ const data = await res.json();
      >
      <div className='input'>
 <input
+autoFocus
 type='text'
 placeholder='Enter your email address'
 value={email}
-onChange={(e)=>setEmail(e.target.value)}
+onChange={(e)=>setEmail(e.target.value.trim())}
 />
 {/* <br/> */}
 <input
 type='password'
 placeholder='Enter your password'
 value={password}
-onChange={(e)=>setPassword(e.target.value)}
+onChange={(e)=>setPassword(e.target.value.trim())}
 />
 <div style={{color:"red"}}>{err ? <p>{err}</p> : ""}</div>
 <button
 onClick={handleLogin}
+disabled={!canClick}
+style={{cursor: canClick ? "pointer" : "not-allowed"}}
 >Login</button>
      </div>
      </Base>

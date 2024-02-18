@@ -7,6 +7,7 @@ function Signup() {
     const [password, setPassword] = useState("");
     const [err,setErr] = useState("");
     const history = useHistory()
+     
 const handleSignup = async() => {
     
     const newUser = {
@@ -20,10 +21,17 @@ const handleSignup = async() => {
 });
 
  const data = await res.json();
+ const token = data.token;
+ localStorage.setItem("token",JSON.stringify(token));
+history.push("/");
    setErr(data.data)
 }
 
-
+const canClick = Boolean( email && password !== "")
+const timeOut = setTimeout(() => {
+  setErr("");
+}, 2000);
+ 
   return (
      <Base
      title={"Signup-page"}
@@ -34,18 +42,21 @@ const handleSignup = async() => {
 type='text'
 placeholder='Enter your email address'
 value={email}
-onChange={(e)=>setEmail(e.target.value)}
+onChange={(e)=>setEmail(e.target.value.trim())}
+autoFocus
 />
  
 <input
 type='password'
 placeholder='Enter your password'
 value={password}
-onChange={(e)=>setPassword(e.target.value)}
+onChange={(e)=>setPassword(e.target.value.trim())}
 />
 <div style={{color:"red"}}>{err ? <p>{err}</p> : ""}</div>
 <button
 onClick={handleSignup}
+disabled={!canClick}
+style={{cursor: canClick ? "pointer" : "not-allowed"}}
 >Singup</button>
      </div>
      </Base>

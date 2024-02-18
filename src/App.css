@@ -1,23 +1,32 @@
 body{
-  background-color: rgb(210, 246, 246);
-  margin: 5px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+main{
+  min-height: 90vh;
 }
 .App{
   text-align: center;
   font-family: 'Times New Roman', Times, serif;
-  margin-top: 20px;
  }
+ 
 
  .card{
-  border: 1px solid blue;
   width: 200px;
   height: 200px;
   padding: 6px;
   margin: 0 auto;
-  background-color: skyblue;
-  color: black;
+  background-color: rgb(3, 88, 195);
+  color:  white;
   border-radius: 10px;
   font-family: 'Times New Roman', Times, serif;
+  box-shadow: 1px 1px 1px 1px black;
+  button{
+    &:hover{
+       opacity: .7;
+    }
+  }
  }
  .card-container{
   display: grid;
@@ -31,65 +40,79 @@ body{
 }
 button{
   border-radius: 8px;
-  color: blue;
+   padding: .5rem;
 }
-button:hover{
-  font-size: medium;
-}
-
-
-button {
-  position: relative;
-  background-color: #04AA6D;
-  border: none;
-  color: #FFFFFF;
-  padding: 3px;
-  text-align: center;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-  text-decoration: none;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-button:after {
-  content: "";
-  background: #90EE90;
-  display: block;
-  position: absolute;
-  padding-top: 300%;
-  padding-left: 350%;
-  margin-left: -20px!important;
-  margin-top: -120%;
-  opacity: 0;
-  transition: all 0.8s
-}
-
-button:active:after {
-  padding: 0;
-  margin: 0;
-  opacity: 1;
-  transition: 0s
-}
+ .heading, .description{
+    color:rgb(3, 88, 195);
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+ }
 .input{
 display: flex; 
 flex-direction: column;
- /* justify-content: space-around; */
- width: 55%;
-margin: 0 auto;
+justify-content: center;
+align-items: center;
 gap: 0.5rem;
+input{
+  padding: .5rem;
+  border-radius: .5rem;
+  
+}
+button{
+  background-color: rgb(3, 88, 195);
+  color: #fff;
+  font-weight: bold;
+  width: 20%;
+  &:hover{
+    cursor: pointer;
+  }
+}
 }
 .nav-button{
-  border:1px solid skyblue ;
-  height:50px;
+  min-height:50px;
+   
   display: flex;
+  padding: .7rem;
+  border-radius: .5rem;
+  flex-wrap: wrap;
+  width: calc(100% / 3);
   align-items: center;
   justify-content: center;
-  background-color: skyblue;
-  width: 100%;
+  min-width: 100%;
   gap: 1rem;
+   border-bottom: 3px solid #ccc;
+   /* rgb(65, 224, 253); */
+    /* rgb(218, 35, 140); */
+  button{
+    background-color: rgb(113, 44, 249);
+    color: #fff;
+    
+    cursor: pointer;
+    &:hover{
+       opacity: .7;
+    }
+  }
 }
 .responsive{
    width: 100%;
    height: auto;
+}
+ 
+@media screen and (max-width: 500px) {
+  .nav-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  }
+
+@media screen and (min-width: 800px) {
+  .input input {
+    width: 30% ;
+  }
+  
+}
+@media screen and (min-width: 400px) {
+  .input input {
+    width: 30% ;
+  }
+  
 }
